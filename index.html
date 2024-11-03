@@ -48,7 +48,7 @@
         const password = document.getElementById('regPassword').value;
         const response = await fetch(scriptUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: JSON.stringify({ action: 'register', userId, password })
         });
         const result = await response.text();
@@ -60,7 +60,7 @@
         const password = document.getElementById('loginPassword').value;
         const response = await fetch(scriptUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: JSON.stringify({ action: 'login', userId, password })
         });
         const result = await response.text();
@@ -79,7 +79,7 @@
 
         const response = await fetch(scriptUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: JSON.stringify({ action: 'transfer', userId, password, toUserId, amount })
         });
         const result = await response.text();
