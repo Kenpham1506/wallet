@@ -6,6 +6,7 @@ function signup() {
     
     fetch(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: JSON.stringify({ action: 'signup', username, password }),
     })
     .then(response => response.json())
@@ -18,6 +19,7 @@ function login() {
     
     fetch(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: JSON.stringify({ action: 'login', username, password }),
     })
     .then(response => response.json())
@@ -48,6 +50,7 @@ function transfer() {
     
     fetch(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: JSON.stringify({ action: 'transfer', userId, recipientId, currency, amount }),
     })
     .then(response => response.json())
@@ -64,6 +67,7 @@ function deposit() {
     
     fetch(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: JSON.stringify({ action: 'deposit', userId, currency, amount }),
     })
     .then(response => response.json())
@@ -81,6 +85,7 @@ function buyCurrency() {
     
     fetch(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: JSON.stringify({ action: 'buyCurrency', userId, fromCurrency, toCurrency, amount }),
     })
     .then(response => response.json())
