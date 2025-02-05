@@ -1,4 +1,4 @@
-const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+const API_URL = 'https://script.google.com/macros/s/AKfycbz7Jrrxo0wIv0bWXSQ-HJ1AhbbpfWCX0z9vLb-ejlrYEQ2pUUdJ0dpztU4CzMn4mLYhlg/exec';
 
 function signup() {
     const username = document.getElementById('signup-username').value;
