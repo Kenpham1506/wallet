@@ -1,90 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Wallet System</title>
-    <style>
-      body { font-family: Arial, sans-serif; }
-      .container { max-width: 500px; margin: auto; }
-      input, button { margin: 5px 0; padding: 10px; }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Wallet System</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth">
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Username">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button onclick="signup()">Sign Up</button>
 
-      <!-- Registration Form -->
-      <div>
-        <h2>Register</h2>
-        <input type="text" id="regUserId" placeholder="User ID">
-        <input type="password" id="regPassword" placeholder="Password">
-        <button onclick="registerUser()">Register</button>
-        <p id="registerResult"></p>
-      </div>
-
-      <!-- Login Form -->
-      <div>
         <h2>Login</h2>
-        <input type="text" id="loginUserId" placeholder="User ID">
-        <input type="password" id="loginPassword" placeholder="Password">
-        <button onclick="loginUser()">Login</button>
-        <p id="loginResult"></p>
-      </div>
-
-      <!-- Transfer Form -->
-      <div id="transferSection" style="display:none;">
-        <h2>Transfer Money</h2>
-        <input type="text" id="toUserId" placeholder="Recipient User ID">
-        <input type="number" id="amount" placeholder="Amount">
-        <button onclick="transferMoney()">Transfer</button>
-        <p id="transferResult"></p>
-      </div>
+        <input type="text" id="login-username" placeholder="Username">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()">Login</button>
     </div>
-
-    <script>
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbz7Jrrxo0wIv0bWXSQ-HJ1AhbbpfWCX0z9vLb-ejlrYEQ2pUUdJ0dpztU4CzMn4mLYhlg/exec';
-
-      async function registerUser() {
-        const userId = document.getElementById('regUserId').value;
-        const password = document.getElementById('regPassword').value;
-        const response = await fetch(scriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: JSON.stringify({ action: 'register', userId, password })
-        });
-        const result = await response.text();
-        document.getElementById('registerResult').innerText = result;
-      }
-
-      async function loginUser() {
-        const userId = document.getElementById('loginUserId').value;
-        const password = document.getElementById('loginPassword').value;
-        const response = await fetch(scriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: JSON.stringify({ action: 'login', userId, password })
-        });
-        const result = await response.text();
-        document.getElementById('loginResult').innerText = result;
-
-        if (result === "Login successful.") {
-          document.getElementById('transferSection').style.display = 'block';
-        }
-      }
-
-      async function transferMoney() {
-        const userId = document.getElementById('loginUserId').value;
-        const password = document.getElementById('loginPassword').value;
-        const toUserId = document.getElementById('toUserId').value;
-        const amount = document.getElementById('amount').value;
-
-        const response = await fetch(scriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: JSON.stringify({ action: 'transfer', userId, password, toUserId, amount })
-        });
-        const result = await response.text();
-        document.getElementById('transferResult').innerText = result;
-      }
-    </script>
-  </body>
+    
+    <div id="dashboard" style="display: none;">
+        <h2>Dashboard</h2>
+        <p id="balance"></p>
+        
+        <h3>Manage Account</h3>
+        <button onclick="logout()">Logout</button>
+        
+        <h3>Transfer Money</h3>
+        <input type="text" id="transfer-user-id" placeholder="Recipient User ID">
+        <input type="text" id="transfer-currency" placeholder="Currency">
+        <input type="number" id="transfer-amount" placeholder="Amount">
+        <button onclick="transfer()">Transfer</button>
+        
+        <h3>Deposit Money</h3>
+        <input type="text" id="deposit-currency" placeholder="Currency">
+        <input type="number" id="deposit-amount" placeholder="Amount">
+        <button onclick="deposit()">Deposit</button>
+        
+        <h3>Buy Currency</h3>
+        <input type="text" id="buy-from-currency" placeholder="From Currency">
+        <input type="text" id="buy-to-currency" placeholder="To Currency">
+        <input type="number" id="buy-amount" placeholder="Amount">
+        <button onclick="buyCurrency()">Buy</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
 </html>
