@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+</head>
+<body>
+    <div id="paypal-button-container"></div>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                    method: "POST",
+                    body: JSON.stringify({ action: "createOrder" }),
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then(response => response.json())
+                .then(order => order.id);
+            },
+            onApprove: function(data, actions) {
+                return fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                    method: "POST",
+                    body: JSON.stringify({ action: "captureOrder", orderId: data.orderID }),
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then(response => response.json())
+                .then(order => {
+                    alert("Payment successful! Transaction ID: " + order.purchase_units[0].payments.captures[0].id);
+                });
+            }
+        }).render("#paypal-button-container");
+    </script>
+</body>
+</html>
