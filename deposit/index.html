@@ -12,7 +12,7 @@
                 return fetch("https://script.google.com/macros/s/AKfycbz7Jrrxo0wIv0bWXSQ-HJ1AhbbpfWCX0z9vLb-ejlrYEQ2pUUdJ0dpztU4CzMn4mLYhlg/exec", {
                     method: "POST",
                     body: JSON.stringify({ action: "createOrder" }),
-                    headers: { "Content-Type": "application/json" }
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 })
                 .then(response => response.json())
                 .then(order => order.id);
@@ -21,7 +21,7 @@
                 return fetch("https://script.google.com/macros/s/AKfycbz7Jrrxo0wIv0bWXSQ-HJ1AhbbpfWCX0z9vLb-ejlrYEQ2pUUdJ0dpztU4CzMn4mLYhlg/exec", {
                     method: "POST",
                     body: JSON.stringify({ action: "captureOrder", orderId: data.orderID }),
-                    headers: { "Content-Type": "application/json" }
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 })
                 .then(response => response.json())
                 .then(order => {
